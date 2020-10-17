@@ -1,0 +1,69 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Past Leave Applications</title>
+</head>
+
+<body>
+
+    <div><a style="float:right; margin-right: 40px" href="/logout"> <button>Logout</button> </a></div>
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}
+    <br><br>
+
+    <div class="form" style="max-width: 900px;">
+        <div class="title-row">
+            <h1>Past Applications</h1>
+        </div>
+        <center>
+        <table>
+          <tr>
+            <!--<th>Leave ID</th> -->
+			<th>Number of Days</th>
+            <th>Start Date</th> 
+            <th>End Date</th>
+            <th>Status</th>
+            <th>Description</th>
+          </tr>
+		  <tbody>
+		  {% for leave in leaves %}
+			<tr>
+				<td>{{ leave.no_of_days }}</td>
+				<td>{{ leave.from_date }}</td>
+				<td>{{ leave.to_date }}</td>
+				<td>{{ leave.status }}</td>
+				<td>{{ leave.desc }}</td>
+			</tr>
+		    {% endfor %}
+		</tbody>
+		<!--
+          {% for a in new %}
+              <tr>
+                {% for b in a %}
+                    <td>{{ b }}</td>
+                {% endfor %}
+              </tr>
+          {% endfor %}
+		-->
+        </table>
+        </center>
+		
+    </div>
+	
+    <center>
+        <a style="margin-right: 20px" href="/staff_dashboard"> <button>Back</button> </a>
+    </center>
+
+</body>
+
+</html>

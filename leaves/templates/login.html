@@ -1,0 +1,63 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}
+    
+    <div>
+
+        <form class="form" method="post" action="/login">
+            {% csrf_token %}
+            <div class="title-row">
+                <h1>Online Leave Application</h1>
+            </div>
+	
+            <div class="row">
+                <label>
+                    <span>Faculty/ Admin ID</span>
+                    <input type="text" name="faculty_id" required>
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    <span>Password</span>
+                    <input type="password" name="password" required>
+                </label>
+            </div>
+			
+			<div class="row">
+                <label>
+                    <span>Login me as</span>
+                     <select name="login_type">
+						<option value="select">select</option>
+                        <option value="admin">Admin</option>
+                        <option value="staff">Staff</option>
+                     </select>
+                </label>
+            </div>
+			
+            <div>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

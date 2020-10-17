@@ -1,0 +1,80 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+    <div><a style="float:right; margin-right: 40px" href="/logout"> <button>Logout</button> </a></div>
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}
+    <br><br>
+
+    <div class="form" style="max-width: 900px;">
+        <div class="title-row">
+            <h1>Applications to be approved</h1>
+        </div>
+        <center>
+        <table>
+          <tr>
+			<th>Leave ID</th>
+            <th>Staff ID</th>
+			<th>Staff Name</th>
+			<th>Department</th>
+			<th>Number of Days</th>
+            <th>Start Date</th> 
+            <th>End Date</th>
+            <th>Leave Description</th>
+          </tr>
+		  <tbody>
+		  {% for staff in staffs %}
+			<tr>
+				<td > <strong> <a href = "/view_staff/{{ staff.l_id }}">  {{ staff.l_id }}</a></strong></td>
+				<!-- <td > <strong> <a href = "/view_staff/{{ staff.l_id }}">  {{ staff.l_id }}</a></strong></td>  -->
+				<td>{{ staff.f_id }}</td>
+				<td>{{ staff.name }}</td>
+				<td>{{ staff.dept }}</td>
+				<td>{{ staff.no_of_days }}</td>
+				<td>{{ staff.from_date }}</td>
+				<td>{{ staff.to_date }}</td>
+				<td>{{ staff.desc }}</td>
+			</tr>
+		    {% endfor %}
+		</tbody>
+		  <!--
+          {% for a in old %}
+              <tr>
+                {% for b in a %}
+                    {% if forloop.last %}
+                        <td><a style="text-decoration: none" href="/faculty/{{ b }}">{{ b }}</a></td>
+                    {% else %}
+                        <td>{{ b }}</td>
+                    {% endif %}
+                {% endfor %}
+              </tr>
+          {% endfor %}
+		  -->
+        </table>
+        </center>
+    </div>
+
+    <center>
+        <a style="margin-right: 20px" href="/update_max_days"> <button>Update Maximum Leave days</button> </a>
+        <a style="margin-right: 20px" href="/add_faculty"> <button>Add Faculty Member</button> </a>
+		<a style="margin-right: 20px" href="/admin_leave_record"> <button>Leaves Record</button> </a>
+    </center>
+
+</body>
+
+</html>

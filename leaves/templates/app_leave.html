@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Application for Leave</title>
+</head>
+
+<body>
+
+    <div><a style="float:right; margin-right: 40px" href="/logout"> <button>Logout</button> </a></div>
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}    
+    <div>
+
+        <form class="form" method="post" action="/save_leave">
+            {% csrf_token %}
+            <div class="title-row">
+                <h1>Application for Leave Request</h1>
+            </div>
+			<div class="row">
+                <label>
+                    <span>Number of Days</span>
+                    <input type="text" name="no_of_days">
+                </label>
+            </div>
+			
+            <div class="row">
+                <label>
+                    <span>Start Date</span>
+                    <input type="date" name="start_date">
+                </label>
+            </div>
+
+            <div class="row">
+                <label>
+                    <span>End Date</span>
+                    <input type="date" name="end_date">
+                </label>
+            </div>
+			
+			<div class="row">
+                <label>
+                    <span>Leave Description</span>
+                    <input type="text" name="desc">
+                </label>
+            </div>
+
+            <div>
+                <button style="margin-right: 20px" type="submit">Submit</button>
+				<a class="alert" style="text-decoration: none" href="/staff_dashboard">Back</a>
+                <!--<button class="alert" style="text-decoration: none" href="/staff_dashboard">Back</button> -->
+            </div>
+        </form>
+
+    </div>
+
+</body>
+
+</html>

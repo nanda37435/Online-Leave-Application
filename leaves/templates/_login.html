@@ -1,0 +1,108 @@
+{% load static %}
+<!doctype html>
+
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Online Leave</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- others css -->
+    <link rel="stylesheet" href="{% static  'assets/css/typography.css' %}">
+    <link rel="stylesheet" href="{% static  'assets/css/default-css.css' %}">
+    <link rel="stylesheet" href="{% static  'assets/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static  'assets/css/responsive.css' %}">
+    <!-- modernizr css -->
+	
+</head>
+
+<body>
+
+    <form method="post" action="/loginasadmin">
+        <div class="log-body">		
+			<div class="contact-form">
+				{% csrf_token %}
+						
+				<img src="{% static 'assets/images/police/logo.png' %}"class="avatar2">
+				<h2>SIGN IN</h2>
+						
+            
+                {% csrf_token %}
+               
+                    {% if messages %}
+                        <div class="span12">
+                            {% for message in messages %}
+							
+                               
+								<div class="alert-dismiss">
+								<div class="alert alert-info alert-dismissible fade show" role="alert">
+									{{ message|safe }}
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span class="fa fa-times"></span>
+                                    </button>
+                                </div>
+								</div>
+								<!--
+								<div class="alert alert-danger">
+                                    {{ message|safe }}
+                                </div>
+								-->
+								
+								
+                            {% endfor %}
+                        </div>
+                    {% endif %}	
+					<div class="form-gp">
+						<p>Staff ID   <i class="ti-email"></i> </p>
+						<input type="text" id="exampleInputEmail1" name="Email" required  placeholder="Enter Email">
+						
+					</div>
+					<div class="form-gp">
+						<p>Password <i class="ti-lock"> </i> </p>
+						<label for="exampleInputPassword1"></label>
+						
+						<input type="password" id="exampleInputPassword1" name="login_password" required placeholder="Enter Password"> 
+					</div>	
+                    <div class="row mb-4 rmber-area">
+						<div class="col-6">
+							<div class="custom-control custom-checkbox mr-sm-2">
+								<p>
+                                    <input type="checkbox" onclick="myFunction()">
+                                    <label class="custom-control-label" for="customControlAutosizing">Show</label>
+									
+								</p>
+							</div>
+						</div>
+					</div>
+						
+					<div class="submit-btn-area">
+							<button type="submit" class="btn btn-primary">Login as Admin</button>
+					</div>
+			</div>
+		</div>
+	</form>
+	<!--
+	<form method = "post" action="/loginasstaff">
+		<div class="log-body">		
+			<div class="contact-form">
+			{% csrf_token %}
+				<div class="submit-btn-area">
+				<button type="submit" class="btn btn-primary">Login as Staff</button>
+				</div>
+			</div>
+		</div>
+	</form>
+	-->
+</body>
+<html>
+<script>
+function myFunction() {
+  var x = document.getElementById("exampleInputPassword1");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>

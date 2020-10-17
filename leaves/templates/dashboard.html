@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Dashboard: {{ f_id }}</title>
+</head>
+
+<body>
+
+    <div><a style="float:right; margin-right: 40px" href="/logout"> <button>Logout</button> </a></div>
+    {% if messages %}
+    <center>
+    <div style="max-width:550px;">
+        {% for message in messages %}
+        <div {% if message.tags == 'error' %} class="alert alert-danger" role="alert" {% else %} class="alert alert-success" {% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    </center>
+    {% endif %}
+
+    <div class="form">
+        <div class="title-row">
+            <h1>Welcome {{ name }}!</h1>
+        </div>
+        <div class="row" style="font-size:20px">
+            <span>Faculty ID:</span>
+            <span style="width: 350px;">{{ f_id }}</span>
+        </div>
+        <div class="row" style="font-size:20px">
+            <span>Name:</span>
+            <span style="width: 350px;">{{ name }}</span>
+        </div>
+        <div class="row" style="font-size:20px">
+            <span>Designation:</span>
+            <span style="width: 350px;">{{ desig }}</span>
+        </div>
+		<div class="row" style="font-size:20px">
+            <span>Department:</span>
+            <span style="width: 350px;">{{ dept }}</span>
+        </div>
+        <div class="row" style="font-size:20px">
+            <span>Email ID:</span>
+            <span style="width: 350px;">{{ email }}</span>
+        </div>
+        <div class="row" style="font-size:20px">
+            <span>Phone Number:</span>
+            <span style="width: 350px;">{{ phone_no }}</span>
+        </div>
+		<div class="row" style="font-size:20px">
+            <span>Total Leaves:</span>
+            <span style="width: 350px;">{{ total_leaves }}</span>
+        </div>
+		<div class="row" style="font-size:20px">
+            <span>Used Leaves:</span>
+            <span style="width: 350px;">{{ leaves_used }}</span>
+        </div>
+		<div class="row" style="font-size:20px">
+            <span>Reamining Leaves:</span>
+            <span style="width: 350px;">{{ leaves_remaining }}</span>
+        </div>
+    </div>
+    <center>
+		<!--
+        <a style="margin-right: 20px" href="/days_left"> <button>Leave days remaining</button> </a>
+        -->
+		<a style="margin-right: 20px" href="/app_leave"> <button>Apply for Leave</button> </a>
+        <a style="margin-right: 20px" href="/past_app"> <button>Past Leave Applications</button> </a>
+		<a style="margin-right: 20px" href="/change_staff_password"> <button>Change Password</button> </a>
+		<!--
+        <a style="margin-right: 20px" href="/leave_types"> <button>Leave Types</button> </a>
+		-->
+	</center>
+
+</body>
+
+</html>
